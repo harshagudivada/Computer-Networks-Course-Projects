@@ -1,0 +1,20 @@
+Description of files used:
+
+WebServer.java: 
+    This is the file which contains the WebServer class. This class 
+contains the main function.WebServer class is used to create a Server socket 
+listening for connections. The main thread creates worker threads for each 
+connection request.It creates a separate HttpRequest object for each request and
+passed to the thread.
+
+HttpRequest.java:
+    This file contains the HttpRequest class.WebServer class is used to create a
+Server socket listening for connections. The main thread creates worker threads 
+for each connection request.
+
+Compilation/Usage:
+javac HttpRequest.java
+javac WebServer.java
+java WebServer
+
+

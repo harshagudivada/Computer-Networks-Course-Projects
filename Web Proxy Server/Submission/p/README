@@ -1,0 +1,39 @@
+README:
+
+Description of files used:
+
+WebProxy.java:
+   This file contains WebProxy class. This class contains the main function.
+WebProxy class is used to create a Server socket listening for connections from 
+clients. Depending on the no.of command line arguemnts, this proxy class handles
+2 cases.
+1.It can directly parse,understand and forward to the web server if this proxy
+has access to internet.
+2. Else, if it did not have internet and under another proxy which has access
+to internet, it just relays the data between the clients and the proxy with 
+internet access.
+The main thread creates worker threads for each connection request. Hence it 
+is a "Multi threaded Web Proxy Server"   
+
+proxyThread.java:
+   This file contains proxyThread class.proxyThread class is used to relay 
+between clients and the remote proxy server
+
+HttpRequest.java:
+    This file contains HttpRequest class. HttpRequest class is used to parse and
+modify the HTTP request as per requirement and is forwarded to remote server. 
+After getting the reply from the server, it forwards the same to the client 
+without any modification to the client as if it was from the server.
+
+Compilation/Usage
+
+javac HttpRequest.java
+javac proxyThread.java
+javac WebProxy.java
+
+Using proxy when internet access is directly available to our proxy:
+java WebProxy
+
+Using proxy when requests has to be forwarded to another proxy:
+java WebProxy remote proxy's ip remote proxy's port
+Ex: java WebProxy 192.168.0.4 3128

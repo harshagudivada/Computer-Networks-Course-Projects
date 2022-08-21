@@ -1,0 +1,123 @@
+python seash.py 
+ !> loadkeys cs09b011
+ !> as cs09b011
+cs09b011@ !> browse
+['129.13.214.20:1224', '129.13.214.170:1224', '129.13.214.100:1224', '129.13.214.240:1224', '129.13.214.70:1224']
+Added targets: %2(129.13.214.70:1224:v8), %4(129.13.214.100:1224:v10), %1(129.13.214.20:1224:v4), %5(129.13.214.170:1224:v6), %3(129.13.214.240:1224:v10)
+Added group 'browsegood' with 5 targets
+cs09b011@ !> on %1 run helloworld.repy 
+cs09b011@ !> on %1 show lo
+on %1 show location   on %1 show log        
+cs09b011@ !> on %1 show log
+Log from '129.13.214.20:1224:v4':
+Hello World
+
+cs09b011@ !> on %1
+cs09b011@%1 !> run helloworld.repy 
+cs09b011@%1 !> show log
+Log from '129.13.214.20:1224:v4':
+Hello World
+Hello World
+
+cs09b011@%1 !> on browsegood 
+cs09b011@browsegood !> run helloworld.repy 
+cs09b011@browsegood !> show log
+Log from '129.13.214.240:1224:v10':
+Hello World
+
+Log from '129.13.214.70:1224:v8':
+Hello World
+
+Log from '129.13.214.20:1224:v4':
+Hello World
+Hello World
+Hello World
+
+Log from '129.13.214.100:1224:v10':
+Hello World
+
+Log from '129.13.214.170:1224:v6':
+Hello World
+
+cs09b011@browsegood !> add browsegood to LAN
+cs09b011@browsegood !> on LAN
+cs09b011@LAN !> run infloop.repy 
+cs09b011@LAN !> run helloworld.repy 
+Failure 'Node Manager error 'Vessel has already been started'' on  129.13.214.240:1224:v10
+Failure 'Node Manager error 'Vessel has already been started'' on  129.13.214.70:1224:v8
+Failure 'Node Manager error 'Vessel has already been started'' on  129.13.214.20:1224:v4
+Failure 'Node Manager error 'Vessel has already been started'' on  129.13.214.100:1224:v10
+Failure 'Node Manager error 'Vessel has already been started'' on  129.13.214.170:1224:v6
+cs09b011@LAN !> stop
+cs09b011@LAN !> list
+  ID Own                      Name     Status              Owner Information
+  %1        129.13.214.170:1224:v6    Stopped                               
+  %2         129.13.214.20:1224:v4    Stopped                               
+  %3       129.13.214.100:1224:v10    Stopped                               
+  %4       129.13.214.240:1224:v10    Stopped                               
+  %5         129.13.214.70:1224:v8    Stopped   
+  
+cs09b011@LAN !> on %2 run udppingserver.repy 63102
+cs09b011@LAN !> on %1 run udpping.repy 129.13.214.20 63102
+cs09b011@LAN !> on %1 show log
+Log from '129.13.214.170:1224:v6':
+Hello World
+My IP is: 129.13.214.170
+Sending a ping message to: 129.13.214.20 port 63102
+received message: 'Ping response from 129.13.214.20:63102' from 129.13.214.20:63102
+
+cs09b011@LAN !> on %2 show log
+Log from '129.13.214.20:1224:v4':
+Hello World
+Hello World
+Hello World
+ping server is waiting for messages on 129.13.214.20 port 63102
+Received message: 'Ping message from:129.13.214.170:63102' from 129.13.214.170:63102
+
+cs09b011@LAN !> on %2 stop
+
+browse
+['129.237.161.194:1224', '129.22.150.78:1224', '129.187.143.20:1224', '128.208.1.239:1224', '211.68.70.36:1224', '130.216.1.23:1224', '131.246.112.36:1224', '192.138.213.238:1224', '137.132.80.110:1224', '193.137.173.217:1224', '129.13.214.20:1224', '129.13.214.100:1224', '129.13.214.70:1224', '129.13.214.240:1224', '129.13.214.170:1224']
+Added targets: %13(128.208.1.239:1224:v4), %14(129.237.161.194:1224:v6), %7(137.132.80.110:1224:v22), %15(129.22.150.78:1224:v20), %8(131.246.112.36:1224:v4), %9(192.138.213.238:1224:v20), %6(193.137.173.217:1224:v6), %12(129.187.143.20:1224:v6), %11(211.68.70.36:1224:v8), %10(130.216.1.23:1224:v20)
+Added group 'browsegood' with 10 targets
+cs09b011@LAN !> add browsegood to WAN
+cs09b011@LAN !> on WAN 
+cs09b011@WAN !> show location
+%6(193.137.173.217): Aveiro, Portugal
+%7(137.132.80.110): Singapore
+%8(131.246.112.36): Kaiserslautern, Germany
+%9(192.138.213.238): Boston, MA, United States
+%10(130.216.1.23): Auckland, New Zealand
+%11(211.68.70.36): Dian, China
+%12(129.187.143.20): Garching, Germany
+%13(128.208.1.239): Seattle, WA, United States
+%14(129.237.161.194): Lawrence, KS, United States
+%15(129.22.150.78): Cleveland, OH, United States
+cs09b011@WAN !> show ip to neighboriplist.txt 
+cs09b011@WAN !> upload neighboriplist.txt 
+cs09b011@WAN !> run allpairsping.repy 63102
+Failure 'signedcommunicate failed on session_recvmessage with error 'recv() timed out!'' on  129.237.161.194:1224:v6
+Added group 'rungood' with 9 targets and 'runfail' with 1 targets
+
+cs09b011@WAN !> on %6 show log
+Log from '193.137.173.217:1224:v6':
+ping server is waiting for messages on 193.137.173.217 port 63102
+ping server is waiting for messages on 193.137.173.217 port 63102
+
+cs09b011@WAN !> on %9 show log
+Log from '192.138.213.238:1224:v20':
+My IP is: 192.138.213.238
+Sending a ping message to: 137.132.80.110 port 63102
+My IP is: 192.138.213.238
+Sending a ping message to: 137.132.80.110 port 63102
+
+cs09b011@WAN !> on %7 show log
+Log from '137.132.80.110:1224:v22':
+
+cs09b011@ !> on %1 show log
+Log from '211.68.70.36:1224:v8':
+ping server is waiting for messages on 211.68.70.36 port 63102
+Received message: 'Ping message from:192.168.1.119:63102' from 180.149.62.52:53547
+My IP is: 211.68.70.36
+Sending a ping message to: 192.168.1.119 port 63102
+  

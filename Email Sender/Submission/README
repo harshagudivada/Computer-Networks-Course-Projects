@@ -1,0 +1,9 @@
+README:
+
+This Email client consists of only one EmailSender.java file. First compile it 
+as "javac EmailSender.java". Now  run using the command "java EmailSender".
+
+This Email Client is interactive. It asks you the Sender email Id, receiver's
+email Id, subject and content in the message. As this is not using any 
+authentication, the sent mail may be put in Spam.
+ 

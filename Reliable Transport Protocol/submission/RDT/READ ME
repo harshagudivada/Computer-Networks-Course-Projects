@@ -1,0 +1,39 @@
+README:
+
+Description of files used:
+
+ ALTERNATING BIT AND GO-BACK-N NETWORK EMULATOR: VERSION 1.1  J.F.Kurose
+
+   This code should be used for PA2, unidirectional or bidirectional
+   data transfer protocols (from A to B. Bidirectional transfer of data
+   is for extra credit and is not required).  Network properties:
+   - one way network delay averages five time units (longer if there
+     are other messages in the channel for GBN), but can be larger
+   - packets can be corrupted (either the header or the data portion)
+     or lost, according to user-defined probabilities
+   - packets will be delivered in the order in which they were sent
+     (although some can be lost).
+
+abp.c:
+	The procedures, A_output(),A_input(),A_timerinterrupt(),A_init(),B_input(), 
+and B_init() which together will implement a stop-and-wait (i.e., 
+the alternating bit protocol, which we referred to as rdt3.0 in the text)
+unidirectional transfer of data from the A-side to the B-side.
+
+	Our procedures might print out a message whenever an event occurs at your 
+sender or receiver (a message/packet arrival, or a timer interrupt) as well as
+any action taken in response. 
+
+gbn.c:
+	The procedures, A_output(),A_input(),A_timerinterrupt(),A_init(),B_input(), 
+and B_init() which together will implement a Go-Back-N unidirectional transfer 
+of data from the A-side to the B-side, with a window size of 8. 
+	
+	
+
+Compilation/Usage
+
+1. gcc adp.c
+   ./a.out
+2. gcc gbn.c
+   ./a.out	

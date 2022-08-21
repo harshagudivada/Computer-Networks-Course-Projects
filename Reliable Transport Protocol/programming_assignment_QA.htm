@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<html><head>
+
+
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta name="GENERATOR" content="Mozilla/4.5 [en] (Win98; I) [Netscape]">
+   <title>Transport Layer Lab Assignment:  Q&amp;A</title>
+</head><body bgcolor="#ffffff">
+&nbsp;
+<br>Here, FYI, are the most recent Q&amp;A's for this lab assignment:
+<br>&nbsp;
+<ul>
+<li>
+<i>You write a very clean, portable program! I only made a few changes
+to compile it on Windows NT using Microsoft Developer Studio. I have not
+started the assignment yet. I thought you might be interested in what changes
+I made as an initial step.</i></li>
+
+<pre><i>&nbsp;&nbsp; 1. include stdlib.h
+&nbsp;&nbsp; 2. add function prototypes at the top of the file for init,&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; generate_next_arrival, and insertevent.
+&nbsp;&nbsp; 3. declared functions that don't return anything as void.
+&nbsp;&nbsp; 4. cast a bunch of constants to float.
+&nbsp;&nbsp; 5. removed a couple of unreferenced local variables.
+&nbsp;&nbsp; 6. set mmm to RAND_MAX in function jimsrand.
+&nbsp;&nbsp; 7. exit takes an argument under windows (i.e. exit(0) instead of exit())
+&nbsp;&nbsp; 8. removed redefinitions of malloc (it&nbsp; is already declared in stdlib.h.)
+</i></pre>
+<i>I'm impressed. You must have put a lot of time into this. I included
+the whole modified file in case you wanted to take a look.</i>
+<p>&nbsp;Well, thanks. <a href="http://gaia.cs.umass.edu/kurose/transport/programming_assignment_alt.txt">Here
+</a>is the modified code (modification to the code I handed out) that this
+student turned in. I have not tried that code myself.
+<br>&nbsp;
+<br>&nbsp;
+</p><li>
+<i>The gcc compiler complains about the use of exit() in your code.</i></li>
+
+<p><br>Change exit() to exit(0) if this is a problem.
+<br>&nbsp;
+</p><li>
+<i>The compiler complains about the use of the time variable in your code.</i></li>
+
+<p><br>Some compilers will do this. You can change the name of my emulator's
+<i>time</i> variable to <i>simtime</i> or something like that.
+<br>&nbsp;
+<br>&nbsp;
+</p><li>
+<i>My timer doesn't work. Sometimes it times out immediately after I set
+it (without waiting), other times, it does not time out at the right time.
+What's up?</i></li>
+
+<p><br>My timer code is OK (hundreds of students have used it). The most
+common timer problem I've seen is that students call my timer routine and
+pass it an integer time value (wrong), instead of a float (as specified).
+<br>&nbsp;
+</p><li>
+<i>You say that we can access you time variable for diagnostics, but it
+seems that accessing it in managaing our timer interrupt list would also
+be useful. Can we use time for this purpose?</i></li>
+
+<p><br>&nbsp;Yes.
+<br>&nbsp;
+</p><li>
+<i>The jimsrand() function is not returning the right values on the edlab
+machines</i></li>
+
+<p><br>To make jimsrand() work on the edlab Alphas, the variable mmm should
+be set to RAND_MAX (it may be necessary to include stdlib.h to get this
+constant).
+<br>&nbsp;
+</p><li>
+<i>Why is there a timer on the B side?</i></li>
+
+<p><br>This is there in case you want to implement bi-directional data
+transfer, in which case you would want a timer for the B-&gt;A data path.
+<br>&nbsp;
+<br>&nbsp;
+</p><li>
+<i>How concerned does our code need to be with synchronizing the sequence
+numbers between A and B sides? Does our B side code assume that Connection
+Establishment ( three-way handshake) has already taken place, establishing
+the first packet sequence number ? In other words can we just assume that
+the first packet should always have a certain sequence number? Can we pick
+that number arbitrarily?</i></li>
+
+<p><br>You can assume that the three way handshake has already taken place.
+You can hard-code an initial sequence number into your sender and receiver.
+<br>&nbsp;
+<br>&nbsp;
+</p><li>
+<i>You instruct us to use both ACK and NAK messages. How would we signify
+a NAK event given the pkt struct you defined?</i></li>
+
+<p><br>A hack would be to use negative numbers for NAKs. I probably should
+have included an explicit ACK/NAK bit in the packet definition.
+<br>&nbsp;
+</p><li>
+<i>In a bidirectional implementation, how would the sender indicate that
+a packet includes only an ACK and not an ACK plus data (when there's no
+data available on which to piggyback the ACK)?</i></li>
+
+<p><br>The would be no need to use the sequence number (or you could set
+it to a default value like -1) if there is no data in the packet.
+<br>&nbsp;
+</p><li>
+<i>When I submitted my assignment I could not get a proper output because
+the program core dumped..... I could not figure out why I was getting a
+segmentation fault so ....</i></li>
+
+<p><br>Offhand I'm not sure whether this applies to your code, but it seems
+most of the problems with seg. faults on&nbsp; this lab stemmed from programs
+that printed out char *'s without ensuring those pointed to null- terminated
+strings. (For example, the messages -- packet payloads -- supplied by the
+network emulator were not null-terminated) This is a classic difficulty
+that trips up many programmers who've recently moved to C from a more safe
+langauge.
+<br>&nbsp;</p></ul>
+<i></i>
+</body></html>

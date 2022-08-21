@@ -1,0 +1,51 @@
+madhav@ubuntu:~$ nslookup -type=MX google.com
+Server:		192.168.1.1
+Address:	192.168.1.1#53
+
+Non-authoritative answer:
+google.com	mail exchanger = 10 aspmx.l.google.com.
+google.com	mail exchanger = 20 alt1.aspmx.l.google.com.
+google.com	mail exchanger = 30 alt2.aspmx.l.google.com.
+google.com	mail exchanger = 40 alt3.aspmx.l.google.com.
+google.com	mail exchanger = 50 alt4.aspmx.l.google.com.
+
+Authoritative answers can be found from:
+google.com	nameserver = ns4.google.com.
+google.com	nameserver = ns1.google.com.
+google.com	nameserver = ns2.google.com.
+google.com	nameserver = ns3.google.com.
+aspmx.l.google.com	internet address = 74.125.127.26
+alt1.aspmx.l.google.com	internet address = 209.85.225.26
+alt2.aspmx.l.google.com	internet address = 74.125.65.26
+alt3.aspmx.l.google.com	internet address = 74.125.91.26
+alt4.aspmx.l.google.com	internet address = 74.125.115.26
+ns1.google.com	internet address = 216.239.32.10
+ns2.google.com	internet address = 216.239.34.10
+ns3.google.com	internet address = 216.239.36.10
+ns4.google.com	internet address = 216.239.38.10
+
+madhav@ubuntu:~$ telnet alt1.aspmx.l.google.com 25
+Trying 209.85.225.26...
+Connected to alt1.aspmx.l.google.com.
+Escape character is '^]'.
+220 **************************************
+HELO gmail
+250 mx.google.com at your service
+MAIL FROM:<cs09b011@iith.ac.in>
+250 2.1.0 OK j1si12547207icn.75
+RCPT TO:<harsha1857@gmail.com>
+250 2.1.5 OK j1si12547207icn.75
+DATA
+354  Go ahead j1si12547207icn.75
+From: "HarshaIITH" <cs09b011@iith.ac.in>  
+To: "Harsha Vardhan" <harsha1857@gmail.com>
+Date: Mon,13 Feb 2012 18:43:00
+SUBJECT: Test Message
+
+Hello,Good evening
+.
+250 2.0.0 OK 1329138906 j1si12547207icn.75
+QUIT
+221 2.0.0 closing connection j1si12547207icn.75
+Connection closed by foreign host.
+
